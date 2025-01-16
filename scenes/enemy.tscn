@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfi2drpl03l7y"]
+[gd_scene load_steps=5 format=3 uid="uid://bfi2drpl03l7y"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_7d2p2"]
 [ext_resource type="Texture2D" uid="uid://cqccpgy08hl55" path="res://assets/characters.png" id="2_20fdw"]
+[ext_resource type="Script" path="res://scripts/vision.gd" id="3_s3g73"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gu0sm"]
 size = Vector2(32, 30)
@@ -17,12 +18,14 @@ texture = ExtResource("2_20fdw")
 region_enabled = true
 region_rect = Rect2(32, 0, 32, 32)
 
-[node name="Vision" type="StaticBody2D" parent="."]
+[node name="Vision" type="Area2D" parent="."]
+script = ExtResource("3_s3g73")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vision"]
 polygon = PackedVector2Array(0, 0, 150, 50, 150, -50)
-disabled = true
 
 [node name="Polygon2D" type="Polygon2D" parent="Vision"]
 color = Color(1, 0, 0, 0.505882)
 polygon = PackedVector2Array(0, 0, 150, 50, 150, -50)
+
+[connection signal="body_entered" from="Vision" to="Vision" method="_on_body_entered"]

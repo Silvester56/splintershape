@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var isPlayer = true
 const SPEED = 200.0
 
 func _physics_process(delta: float) -> void:
