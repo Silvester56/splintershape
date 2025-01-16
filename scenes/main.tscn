@@ -39,7 +39,7 @@ script = ExtResource("1_3bvv6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CircleShape2D_6nioo")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="Form" type="Sprite2D" parent="Player"]
 texture = ExtResource("2_3ypwl")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)

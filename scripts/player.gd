@@ -1,14 +1,28 @@
 extends CharacterBody2D
 
 var isPlayer = true
+var currentShape = Shape.WHITE_DISK
 const SPEED = 200.0
+
+func getSpriteOffset(s):
+	if s == Shape.WHITE_DISK:
+		return 0
+	elif s == Shape.RED_SQUARE:
+		return 32
+	elif s == Shape.GREEN_TRIANGLE:
+		return 64
+	elif s == Shape.BLUE_CROSS:
+		return 96
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("action"):
-		for body in get_node("Range").get_overlapping_bodies():
+		for body in $Range.get_overlapping_bodies():
 			if "isEnemy" in body and body.isEnemy:
-				print("takedown !")
-				body.currentState = body.EnemyState.SLEEPING
+				if body.currentState == body.EnemyState.SLEEPING:
+					currentShape = body.currentShape
+					$Form.region_rect = Rect2(getSpriteOffset(currentShape), 0, 32, 32)
+				else:
+					body.currentState = body.EnemyState.SLEEPING
 	var directionX := Input.get_axis("left", "right")
 	if directionX:
 		velocity.x = directionX * SPEED
