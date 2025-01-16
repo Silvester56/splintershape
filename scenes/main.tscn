@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://bjua8wu4vbrcv"]
+[gd_scene load_steps=9 format=4 uid="uid://bjua8wu4vbrcv"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_3bvv6"]
 [ext_resource type="Texture2D" uid="uid://cqccpgy08hl55" path="res://assets/characters.png" id="2_3ypwl"]
@@ -7,6 +7,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6nioo"]
 radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4urgh"]
+radius = 35.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iwln0"]
 texture = ExtResource("2_vp8rr")
@@ -40,6 +43,11 @@ shape = SubResource("CircleShape2D_6nioo")
 texture = ExtResource("2_3ypwl")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
+
+[node name="Range" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Range"]
+shape = SubResource("CircleShape2D_4urgh")
 
 [node name="Ground" type="TileMapLayer" parent="."]
 z_index = -1
