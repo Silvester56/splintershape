@@ -8,6 +8,7 @@ func _physics_process(delta: float) -> void:
 		for body in get_node("Range").get_overlapping_bodies():
 			if "isEnemy" in body and body.isEnemy:
 				print("takedown !")
+				body.currentState = body.EnemyState.SLEEPING
 	var directionX := Input.get_axis("left", "right")
 	if directionX:
 		velocity.x = directionX * SPEED
