@@ -17,9 +17,12 @@ texture = ExtResource("2_20fdw")
 region_enabled = true
 region_rect = Rect2(32, 0, 32, 32)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(0, 0, 150, 50, 150, -50)
+[node name="Vision" type="StaticBody2D" parent="."]
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vision"]
+polygon = PackedVector2Array(0, 0, 150, 50, 150, -50)
+disabled = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Vision"]
 color = Color(1, 0, 0, 0.505882)
 polygon = PackedVector2Array(0, 0, 150, 50, 150, -50)
