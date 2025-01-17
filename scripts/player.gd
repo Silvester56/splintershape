@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 			if "isEnemy" in body and body.isEnemy:
 				if body.currentState == body.EnemyState.SLEEPING:
 					currentShape = body.currentShape
-					$Form.region_rect = Rect2(getSpriteOffset(currentShape), 0, 32, 32)
+					$Shape.region_rect = Rect2(getSpriteOffset(currentShape), 0, 32, 32)
 				else:
 					body.currentState = body.EnemyState.SLEEPING
 	var directionX := Input.get_axis("left", "right")
