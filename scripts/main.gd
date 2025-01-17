@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var pauseMenu = $PauseMenu
-@onready var gameOverScreen = $GameOverScreen
+@onready var pauseMenu = $Player/Camera2D/PauseMenu
+@onready var gameOverScreen = $Player/Camera2D/GameOverScreen
 var paused = false
 
 func _process(delta: float) -> void:
