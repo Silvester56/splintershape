@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bjua8wu4vbrcv"]
+[gd_scene load_steps=13 format=4 uid="uid://bjua8wu4vbrcv"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2hkgr"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_3bvv6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cjibbjqxkl72k" path="res://assets/concrete.png" id="2_vp8rr"]
 [ext_resource type="PackedScene" uid="uid://bfi2drpl03l7y" path="res://scenes/enemy.tscn" id="4_x3k22"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="6_netim"]
+[ext_resource type="Script" path="res://scripts/game_over_screen.gd" id="7_ku202"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6nioo"]
 radius = 16.0
@@ -32,6 +33,9 @@ texture = ExtResource("2_vp8rr")
 physics_layer_0/collision_layer = 3
 physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_0fbpx")
+
+[sub_resource type="LabelSettings" id="LabelSettings_6dkud"]
+font_size = 40
 
 [node name="Main" type="Node2D"]
 position = Vector2(300, 250)
@@ -100,5 +104,56 @@ text = "Resume"
 layout_mode = 2
 text = "Quit"
 
+[node name="GameOverScreen" type="Control" parent="."]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 852.0
+offset_bottom = 398.0
+script = ExtResource("7_ku202")
+
+[node name="Label" type="Label" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -108.5
+offset_top = 100.0
+offset_right = 108.5
+offset_bottom = 155.0
+grow_horizontal = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_6dkud")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -33.0
+offset_right = 35.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="Retry" type="Button" parent="GameOverScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Retry"
+
+[node name="ToMainMenu" type="Button" parent="GameOverScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main menu"
+
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Resume" to="PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Quit" to="PauseMenu" method="_on_quit_pressed"]
+[connection signal="pressed" from="GameOverScreen/MarginContainer/VBoxContainer/Retry" to="GameOverScreen" method="_on_retry_pressed"]
+[connection signal="pressed" from="GameOverScreen/MarginContainer/VBoxContainer/ToMainMenu" to="GameOverScreen" method="_on_to_main_menu_pressed"]

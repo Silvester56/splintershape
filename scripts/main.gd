@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var pauseMenu = $PauseMenu
+@onready var gameOverScreen = $GameOverScreen
 var paused = false
 
 func _process(delta: float) -> void:
@@ -15,3 +16,7 @@ func pause():
 		pauseMenu.show()
 		get_tree().paused = true
 	paused = !paused
+
+func gameover():
+	gameOverScreen.show()
+	get_tree().paused = true
