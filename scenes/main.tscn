@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://bjua8wu4vbrcv"]
+[gd_scene load_steps=11 format=4 uid="uid://bjua8wu4vbrcv"]
 
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_2hkgr"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_3bvv6"]
 [ext_resource type="Texture2D" uid="uid://cqccpgy08hl55" path="res://assets/characters.png" id="2_3ypwl"]
 [ext_resource type="Texture2D" uid="uid://cjibbjqxkl72k" path="res://assets/concrete.png" id="2_vp8rr"]
 [ext_resource type="PackedScene" uid="uid://bfi2drpl03l7y" path="res://scenes/enemy.tscn" id="4_x3k22"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="6_netim"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6nioo"]
 radius = 16.0
@@ -33,6 +35,7 @@ sources/0 = SubResource("TileSetAtlasSource_0fbpx")
 
 [node name="Main" type="Node2D"]
 position = Vector2(300, 250)
+script = ExtResource("1_2hkgr")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 collision_layer = 2
@@ -62,3 +65,40 @@ position = Vector2(-47, 135)
 
 [node name="Enemy2" parent="." instance=ExtResource("4_x3k22")]
 position = Vector2(-81, -150)
+
+[node name="PauseMenu" type="Control" parent="."]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_netim")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -33.0
+offset_right = 35.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Quit" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Resume" to="PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Quit" to="PauseMenu" method="_on_quit_pressed"]
