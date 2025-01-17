@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dqytvf2pt4vpq"]
+
+[ext_resource type="FontFile" uid="uid://bm0wdm82xkrfp" path="res://assets/Square.ttf" id="1_ynevy"]
+
+[resource]
+default_font = ExtResource("1_ynevy")
+default_font_size = 50

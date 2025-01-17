@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://dsfudg34oc8c1"]
+[gd_scene load_steps=6 format=4 uid="uid://dsfudg34oc8c1"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_aipnt"]
+[ext_resource type="Theme" uid="uid://dqytvf2pt4vpq" path="res://themes/square.tres" id="1_pxwru"]
 [ext_resource type="Texture2D" uid="uid://cjibbjqxkl72k" path="res://assets/concrete.png" id="2_j5xpe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sk1h7"]
@@ -29,6 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_pxwru")
 script = ExtResource("1_aipnt")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
