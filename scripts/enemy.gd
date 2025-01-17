@@ -14,6 +14,7 @@ enum EnemyState {
 
 var currentShape = Shape.RED_SQUARE
 var isEnemy = true
+var sleepingTextVisibleCharacters = 0
 const SPEED = 100.0
 
 func getCurrentShape(n):
@@ -50,6 +51,7 @@ func _ready() -> void:
 	currentShape = getCurrentShape(shapeNumber)
 	$Shape.region_rect = Rect2(getSpriteOffset(currentShape), 0, 32, 32)
 	$Vision/Polygon2D.color = getVisionColor(currentShape)
+	$Speech.add_theme_color_override("font_color", Color($Vision/Polygon2D.color, 1))
 
 func _physics_process(delta: float) -> void:
 	if currentState == EnemyState.PATROL:
@@ -62,6 +64,8 @@ func _physics_process(delta: float) -> void:
 	elif currentState == EnemyState.ROTATE:
 		$Vision.rotation = $Vision.rotation + 0.05
 	elif currentState == EnemyState.SLEEPING:
+		sleepingTextVisibleCharacters = sleepingTextVisibleCharacters + 0.05
+		$Speech.visible_characters = int(floorf(sleepingTextVisibleCharacters)) % 7
 		$Vision.visible = false
 
 func _on_vision_body_entered(body: Node2D) -> void:

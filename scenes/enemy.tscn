@@ -28,4 +28,12 @@ polygon = PackedVector2Array(0, 0, 150, 50, 150, -50)
 color = Color(1, 0, 0, 0.505882)
 polygon = PackedVector2Array(0, 0, 150, 50, 150, -50)
 
+[node name="Speech" type="Label" parent="."]
+offset_left = -27.0
+offset_top = -40.0
+offset_right = 13.0
+text = "zzz..."
+visible_characters = 0
+visible_ratio = 0.0
+
 [connection signal="body_entered" from="Vision" to="." method="_on_vision_body_entered"]
