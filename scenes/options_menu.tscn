@@ -84,14 +84,6 @@ step = 0.001
 script = ExtResource("3_3xc6g")
 busName = "SFX"
 
-[node name="NoClip" type="CheckBox" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Noclip"
-
-[node name="Ninja" type="CheckBox" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Ninja"
-
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Back"
