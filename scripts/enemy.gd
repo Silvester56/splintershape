@@ -62,7 +62,7 @@ func _physics_process(delta: float) -> void:
 			directionY = -directionY
 			$Vision.rotation = $Vision.rotation + deg_to_rad(180)
 	elif currentState == EnemyState.ROTATE:
-		$Vision.rotation = $Vision.rotation + 0.05
+		$Vision.rotation = $Vision.rotation + 0.04
 	elif currentState == EnemyState.SLEEPING:
 		sleepingTextVisibleCharacters = sleepingTextVisibleCharacters + 0.05
 		$Speech.visible_characters = int(floorf(sleepingTextVisibleCharacters)) % 7

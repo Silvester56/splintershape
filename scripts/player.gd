@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var isPlayer = true
 var currentShape = Shape.WHITE_DISK
-const SPEED = 200.0
+const SPEED = 250.0
 
 func getSpriteOffset(s):
 	if s == Shape.WHITE_DISK:
