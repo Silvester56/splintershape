@@ -122,9 +122,9 @@ layout_mode = 2
 layout_mode = 2
 text = "Resume"
 
-[node name="Quit" type="Button" parent="Player/Camera2D/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="ToMainMenu" type="Button" parent="Player/Camera2D/PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Quit"
+text = "Main menu"
 
 [node name="ColorRect2" type="ColorRect" parent="Player/Camera2D/PauseMenu"]
 layout_mode = 1
@@ -1044,7 +1044,7 @@ color = Color(0, 1, 0, 0.505882)
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Player/Camera2D/PauseMenu/MarginContainer/VBoxContainer/Resume" to="Player/Camera2D/PauseMenu" method="_on_resume_pressed"]
-[connection signal="pressed" from="Player/Camera2D/PauseMenu/MarginContainer/VBoxContainer/Quit" to="Player/Camera2D/PauseMenu" method="_on_quit_pressed"]
+[connection signal="pressed" from="Player/Camera2D/PauseMenu/MarginContainer/VBoxContainer/ToMainMenu" to="Player/Camera2D/PauseMenu" method="_on_to_main_menu_pressed"]
 [connection signal="pressed" from="Player/Camera2D/GameOverScreen/MarginContainer/VBoxContainer/Retry" to="Player/Camera2D/GameOverScreen" method="_on_retry_pressed"]
 [connection signal="pressed" from="Player/Camera2D/GameOverScreen/MarginContainer/VBoxContainer/ToMainMenu" to="Player/Camera2D/GameOverScreen" method="_on_to_main_menu_pressed"]
 [connection signal="pressed" from="Player/Camera2D/SuccessScreen/MarginContainer/VBoxContainer/Retry" to="Player/Camera2D/SuccessScreen" method="_on_retry_pressed"]
