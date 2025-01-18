@@ -19,9 +19,11 @@ func _physics_process(delta: float) -> void:
 		for body in $Range.get_overlapping_bodies():
 			if "isEnemy" in body and body.isEnemy:
 				if body.currentState == body.EnemyState.SLEEPING:
+					$Copy.play()
 					currentShape = body.currentShape
 					$Shape.region_rect = Rect2(getSpriteOffset(currentShape), 0, 32, 32)
 				else:
+					$Punch.play()
 					body.currentState = body.EnemyState.SLEEPING
 	var directionX := Input.get_axis("left", "right")
 	if directionX:
