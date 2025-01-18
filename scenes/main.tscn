@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://bjua8wu4vbrcv"]
+[gd_scene load_steps=25 format=4 uid="uid://bjua8wu4vbrcv"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2hkgr"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_3bvv6"]
@@ -57,6 +57,19 @@ font = ExtResource("8_bo4ht")
 font_size = 30
 font_color = Color(0.321569, 0.321569, 0.321569, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pu2w0"]
+radius = 30.0666
+
+[sub_resource type="Gradient" id="Gradient_ynoa3"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.22619, 0.345238, 0.678571)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6inkx"]
+gradient = SubResource("Gradient_ynoa3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2hkgr")
 
@@ -88,6 +101,7 @@ theme = ExtResource("5_lar43")
 script = ExtResource("6_netim")
 
 [node name="MarginContainer" type="MarginContainer" parent="Player/Camera2D/PauseMenu"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -111,6 +125,20 @@ text = "Resume"
 [node name="Quit" type="Button" parent="Player/Camera2D/PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="ColorRect2" type="ColorRect" parent="Player/Camera2D/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -483.0
+offset_top = -482.0
+offset_right = 491.0
+offset_bottom = 494.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.392157)
 
 [node name="GameOverScreen" type="Control" parent="Player/Camera2D"]
 process_mode = 2
@@ -160,6 +188,67 @@ layout_mode = 2
 text = "Main menu"
 
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -483.0
+offset_top = -482.0
+offset_right = 491.0
+offset_bottom = 494.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="SuccessScreen" type="Control" parent="Player/Camera2D"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("5_lar43")
+script = ExtResource("7_ku202")
+
+[node name="Label" type="Label" parent="Player/Camera2D/SuccessScreen"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -123.5
+offset_top = -260.0
+offset_right = 123.5
+offset_bottom = -205.0
+grow_horizontal = 2
+text = "Success"
+
+[node name="MarginContainer" type="MarginContainer" parent="Player/Camera2D/SuccessScreen"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -33.0
+offset_right = 35.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Player/Camera2D/SuccessScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="Retry" type="Button" parent="Player/Camera2D/SuccessScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Retry"
+
+[node name="ToMainMenu" type="Button" parent="Player/Camera2D/SuccessScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main menu"
+
+[node name="ColorRect" type="ColorRect" parent="Player/Camera2D/SuccessScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -593,10 +682,22 @@ stream = ExtResource("11_plvui")
 autoplay = true
 parameters/looping = true
 
+[node name="Goal" type="Area2D" parent="."]
+position = Vector2(1440, 1440)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+shape = SubResource("CircleShape2D_pu2w0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goal"]
+texture = SubResource("GradientTexture2D_6inkx")
+
 [connection signal="pressed" from="Player/Camera2D/PauseMenu/MarginContainer/VBoxContainer/Resume" to="Player/Camera2D/PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="Player/Camera2D/PauseMenu/MarginContainer/VBoxContainer/Quit" to="Player/Camera2D/PauseMenu" method="_on_quit_pressed"]
 [connection signal="pressed" from="Player/Camera2D/GameOverScreen/MarginContainer/VBoxContainer/Retry" to="Player/Camera2D/GameOverScreen" method="_on_retry_pressed"]
 [connection signal="pressed" from="Player/Camera2D/GameOverScreen/MarginContainer/VBoxContainer/ToMainMenu" to="Player/Camera2D/GameOverScreen" method="_on_to_main_menu_pressed"]
+[connection signal="pressed" from="Player/Camera2D/SuccessScreen/MarginContainer/VBoxContainer/Retry" to="Player/Camera2D/SuccessScreen" method="_on_retry_pressed"]
+[connection signal="pressed" from="Player/Camera2D/SuccessScreen/MarginContainer/VBoxContainer/ToMainMenu" to="Player/Camera2D/SuccessScreen" method="_on_to_main_menu_pressed"]
+[connection signal="body_entered" from="Goal" to="." method="_on_goal_body_entered"]
 
 [editable path="RedVertical"]
 [editable path="RedVertical2"]
